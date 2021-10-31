@@ -15,12 +15,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Shopping List')),
+      backgroundColor: Colors.orange[100],
+      appBar: AppBar(
+        title: const Text(
+          'Shopflut',
+        ),
+        backgroundColor: Colors.orange,
+      ),
       body: ListView(children: _getItems()),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(context),
           tooltip: 'Add',
-          child: const Icon(Icons.add)),
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.orange),
     );
   }
 
@@ -32,7 +39,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildTodoItem(String title) {
-    return ListTile(title: Text(title));
+    return ListTile(
+      title: Text(title),
+    );
   }
 
   Future<AlertDialog> _displayDialog(BuildContext context) async {
