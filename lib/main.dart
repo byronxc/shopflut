@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:shopflut/sliderpage.dart';
-
+import 'package:shopflut/home_page.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -23,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 3),
         () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SliderPage())));
+            context, MaterialPageRoute(builder: (context) => HomePage())));
   }
 
   @override
