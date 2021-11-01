@@ -8,21 +8,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // save data
-  final List<String> _todoList = <String>[];
-  // text field
+  final List<String> _shoppingList = <String>[];
   final TextEditingController _textFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[100],
+      backgroundColor: Colors.orange[25],
       appBar: AppBar(
         title: const Text(
           'Shopflut',
+          style: TextStyle(
+              fontSize: 40.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'IndieFlower'),
         ),
         backgroundColor: Colors.orange,
       ),
-      body: ListView(children: _getItems()),
+      body: bodyContent(),
       floatingActionButton: FloatingActionButton(
           onPressed: () => _displayDialog(context),
           tooltip: 'Add',
@@ -31,17 +34,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _addTodoItem(String title) {
+  void _addItem(String title) {
     setState(() {
-      _todoList.add(title);
+      _shoppingList.add(title);
     });
     _textFieldController.clear();
-  }
-
-  Widget _buildTodoItem(String title) {
-    return ListTile(
-      title: Text(title),
-    );
   }
 
   Future<AlertDialog> _displayDialog(BuildContext context) async {
@@ -56,14 +53,20 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text('Add'),
+                child: const Text(
+                  'Add',
+                  style: TextStyle(color: Colors.orange),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  _addTodoItem(_textFieldController.text);
+                  _addItem(_textFieldController.text);
                 },
               ),
               TextButton(
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.orange),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -73,11 +76,40 @@ class _HomePageState extends State<HomePage> {
         }).then((value) => value ?? false);
   }
 
-  List<Widget> _getItems() {
-    final List<Widget> _todoWidgets = <Widget>[];
-    for (String title in _todoList) {
-      _todoWidgets.add(_buildTodoItem(title));
-    }
-    return _todoWidgets;
+   bodyContent() {
+    return ListView.builder(
+        itemCount: _shoppingList.length,
+        itemBuilder: (context, index) {
+          return Card(
+            color: const Color(0xFFEFDFBB),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(10),
+              title: Text(
+                _shoppingList[index],
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.orange,
+                ),
+                onPressed: (){
+                  SnackBar snackBar = SnackBar(
+                    content: Text("${_shoppingList[index]} was removed"),
+                    backgroundColor: Colors.orange,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  setState(() {
+                    _shoppingList.removeAt(index);
+                  });
+                },
+              ),
+            ),
+          );
+        }
+    );
   }
 }

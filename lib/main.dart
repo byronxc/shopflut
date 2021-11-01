@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shopflut/home_page.dart';
+
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+       const Duration(seconds: 3),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage())));
   }
@@ -37,18 +38,16 @@ class _SplashScreenState extends State<SplashScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                        child: new CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 150,
-                      child: Image.asset('images/logo.jpeg'),
-                    )),
-                    Container(
-                        child: new CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 120,
-                      child: Image.asset('images/loading.gif'),
-                    )),
+                    const Text(
+                        "Shopflut",
+                        style: TextStyle(
+                          fontSize: 100,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange,
+                          fontFamily: 'IndieFlower'
+                        ),
+                    ),
+                    Image.asset('images/loading.gif'),
                   ],
                 ))),
       ),
