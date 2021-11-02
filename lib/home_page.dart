@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
         }).then((value) => value ?? false);
   }
 
-   bodyContent() {
+  bodyContent() {
     return ListView.builder(
         itemCount: _shoppingList.length,
         itemBuilder: (context, index) {
@@ -86,17 +86,15 @@ class _HomePageState extends State<HomePage> {
               contentPadding: const EdgeInsets.all(10),
               title: Text(
                 _shoppingList[index],
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18
-                ),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               trailing: IconButton(
                 icon: const Icon(
                   Icons.delete,
                   color: Colors.orange,
                 ),
-                onPressed: (){
+                onPressed: () {
                   SnackBar snackBar = SnackBar(
                     content: Text("${_shoppingList[index]} was removed"),
                     backgroundColor: Colors.orange,
@@ -109,7 +107,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 }
