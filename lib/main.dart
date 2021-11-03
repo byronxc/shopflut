@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const Text(
             "Shopflut",
             style: TextStyle(
-                fontSize: 100,
+                fontSize: 90,
                 fontWeight: FontWeight.bold,
                 color: Colors.orange,
                 fontFamily: 'IndieFlower'),

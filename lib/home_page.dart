@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'info_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.orange,
               ),
+              padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
               child: Text(
                 'Menu',
                 style: TextStyle(
@@ -42,6 +44,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
+              leading: const Icon(Icons.info),
               title: const Text('About',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -49,7 +52,8 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 16,
                   )),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const InfoPage()));
               },
             ),
           ],
